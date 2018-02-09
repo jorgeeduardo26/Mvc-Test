@@ -1,51 +1,56 @@
 ﻿@model Bootstrap.Models.Employee
+@using Bootstrap.Components;
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Trabajador</h2>
 
-<div class="row">
-    <div class="col-xs-12 col-md-10 center-block">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <div class="panel-title">
-                    <h3>
-                        Datos del Trabajador
-                    </h3>
-                </div>
-            </div>
-            <div class="container">
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Nombre)
-                    @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control" })
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.ApellidoPaterno)
-                    @Html.TextBoxFor(m => m.ApellidoPaterno, new { @class = "form-control" })
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.ApellidoMaterno)
-                    @Html.TextBoxFor(m => m.ApellidoMaterno, new { @class = "form-control" })
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.fechaIngreso)
-                    @Html.TextBoxFor(m => m.fechaIngreso, new { @class = "form-control" })
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <input type="button" id="btnSave" value="Registrar" class="btn btn-primary"  />
+@using (Html.BeginForm("Save", "Employee"))
+{
+    <div class="row">
+        <div class="col-xs-12 col-md-10 center-block">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        <h3>
+                            Datos del Trabajador
+                        </h3>
                     </div>
-                    
                 </div>
+                <div class="container">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Nombre)
+                        @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.ApellidoPaterno)
+                        @Html.TextBoxFor(m => m.ApellidoPaterno, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.ApellidoMaterno)
+                        @Html.TextBoxFor(m => m.ApellidoMaterno, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.fechaIngreso)
+                        @Html.TextBoxFor(m => m.fechaIngreso, new { @class = "form-control" })
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            @Html.SubmitButton("Submit")
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
-
         </div>
+
+
+
     </div>
+}
 
-
-
-</div>
 
 <script>
    
