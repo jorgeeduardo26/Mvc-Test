@@ -14,5 +14,6 @@ namespace Bootstrap.Models
         public string ApellidoMaterno { get; set; }
         public DateTime fechaIngreso { get; set; }
         public int Test { get; set; }
+        public int Activo { get; set; }
     }
 }

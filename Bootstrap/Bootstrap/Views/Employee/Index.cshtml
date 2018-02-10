@@ -35,6 +35,10 @@
                         @Html.LabelFor(m => m.fechaIngreso)
                         @Html.TextBoxFor(m => m.fechaIngreso, new { @class = "form-control" })
                     </div>
+                    <div class="form-group">
+                        @Html.CheckBoxBootstrapFor(m => m.Activo, "IsActive", "Is Active", true, true, true);
+                        @Html.TextBoxFor(m => m.fechaIngreso, new { @class = "form-control" })
+                    </div>
                     <div class="row">
                         <div class="col-md-12">
                             @Html.SubmitButton("Submit")

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
@@ -8,21 +10,22 @@ namespace Bootstrap.Components
 {
     public static class HtmlExtensions
     {
+        #region Button
         public static MvcHtmlString SubmitButton(this HtmlHelper htmlHelper, string buttonText, object htmlAttributes = null)
         {
-            return SubmitButton(htmlHelper, buttonText, null, false, null,htmlAttributes);
+            return SubmitButton(htmlHelper, buttonText, null, false, null, htmlAttributes);
         }
 
         public static MvcHtmlString SubmitButton(this HtmlHelper htmlHelper, string buttonText, string id, object htmlAttributes = null)
         {
-            return SubmitButton(htmlHelper, buttonText, id, false,null,htmlAttributes);
-                
+            return SubmitButton(htmlHelper, buttonText, id, false, null, htmlAttributes);
+
         }
-        public static MvcHtmlString SubmitButton(this HtmlHelper htmlHelper, string buttonText, string id,bool isDisabled , object htmlAttributes = null)
+        public static MvcHtmlString SubmitButton(this HtmlHelper htmlHelper, string buttonText, string id, bool isDisabled, object htmlAttributes = null)
         {
-            return SubmitButton(htmlHelper, buttonText, id,isDisabled, null,htmlAttributes);
+            return SubmitButton(htmlHelper, buttonText, id, isDisabled, null, htmlAttributes);
         }
-        public static MvcHtmlString SubmitButton(this HtmlHelper htmlHelper, string buttonText, string id, bool isDisabled,string btnClass ,object htmlAttributes = null)
+        public static MvcHtmlString SubmitButton(this HtmlHelper htmlHelper, string buttonText, string id, bool isDisabled, string btnClass, object htmlAttributes = null)
         {
             string html = string.Empty;
             string disable = string.Empty;
@@ -62,5 +65,58 @@ namespace Bootstrap.Components
             }
             return ret;
         }
+
+        #endregion
+
+        #region Checkbox
+        public static MvcHtmlString CheckBoxBootstrapFor<TModel, TValue>(
+            this HtmlHelper<TModel> htmlHelper,
+            Expression<Func<TModel, TValue>> expression,
+            string id,
+            string text,
+            bool isChecked,
+            bool isAutoFocus,
+            bool useInline = false,
+            object htmlAttributes = null
+            )
+        {
+            StringBuilder sb = new StringBuilder(512);
+            string htmlChecked = string.Empty;
+            string htmlAutoFocus = string.Empty;
+            if (isChecked)
+            {
+                htmlChecked = "checked = 'checked'";
+            }
+            if (isAutoFocus)
+            {
+                htmlAutoFocus = "autofocus = 'autofocus'";
+            }
+            if (useInline)
+            {
+                sb.Append("<label class ='checkbox-inline'> ");
+            }
+            else
+            {
+                sb.Append("<div class='checkbox'> ");
+                sb.Append("  <label> ");
+            }
+            sb.AppendFormat("     <input id = '{0}' name = '{1}' type = 'checkbox' value = 'true' {1} {2} /><input name = '{0}' type = 'hidden' value = 'false' {3} /> ",
+               id, htmlChecked, htmlAutoFocus, GetHtmlAttributes(htmlAttributes));
+            sb.AppendFormat("     {0}", text);
+            if (useInline)
+            {
+                sb.Append("</label> ");
+            }
+            else
+            {
+                sb.Append("   </label> ");
+                sb.Append("</div> ");
+
+            }
+            return MvcHtmlString.Create(sb.ToString());
+        }
+
+        #endregion
+
     }
 }
